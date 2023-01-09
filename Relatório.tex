@@ -1,0 +1,11 @@
+This code is an implementation of a GUI (Graphical User Interface) application using the PyQt5 library in Python. It appears to be a simple image compression program that takes two input image files and generates an output file based on the compression of the input files. The application has a layout with labels and line edits for the user to input the file locations of the input images and the output file, a button to initiate the generation of the output file, and a progress bar to show the progress of the generation process.
+
+The application's main class, FileInputWidget, is derived from QWidget, which is a container widget that can hold other widgets. The class has a constructor that initializes the parent class and sets up the layout of the widget. The layout consists of a vertical arrangement of labels and line edits for the input and output file locations, a progress bar, and a button to initiate the output file generation. The button is connected to a generate_output method, which is called when the button is clicked.
+
+The generate_output method retrieves the locations of the input and output files from the line edits and sets the progress bar to be indeterminate (showing an animation). It then defines several functions: get_size, compress, and descomprimido.
+
+The get_size function takes an image file as input and returns the width and height of the image. The compress function takes an input image file and an output file location as inputs and compresses the input image. It does this by reading the pixel data of the image, counting the number of consecutive pixels of the same value, and writing this information to the output file along with some metadata about the image.
+
+The descomprimido function appears to be the reverse of the compress function, taking a compressed file as input and generating an uncompressed image file as output. It reads the data from the input file, interprets it to recreate the original pixel data, and writes this data to the output file along with some metadata.
+
+Finally, the generate_output method calls the compress and descomprimido functions on the input image files and the output file location specified by the user, and sets the progress bar to be complete.
