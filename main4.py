@@ -104,6 +104,7 @@ class FileInputWidget(QWidget):
                         if c != 1 and c < 3:
                             f2.write(linhas)
                         c = c + 1
+
                 c = 0
                 for v2 in l2:
                     if c <= 70:
