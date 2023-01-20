@@ -1,11 +1,23 @@
-This code is an implementation of a GUI (Graphical User Interface) application using the PyQt5 library in Python. It appears to be a simple image compression program that takes two input image files and generates an output file based on the compression of the input files. The application has a layout with labels and line edits for the user to input the file locations of the input images and the output file, a button to initiate the generation of the output file, and a progress bar to show the progress of the generation process.
+The code defines several functions for image compression and decompression. 
 
-The application's main class, FileInputWidget, is derived from QWidget, which is a container widget that can hold other widgets. The class has a constructor that initializes the parent class and sets up the layout of the widget. The layout consists of a vertical arrangement of labels and line edits for the input and output file locations, a progress bar, and a button to initiate the output file generation. The button is connected to a generate_output method, which is called when the button is clicked.
+The main function is \texttt{compress}, which takes as input an image file and a compressed file, and produces a list of tuples as output. 
 
-The generate_output method retrieves the locations of the input and output files from the line edits and sets the progress bar to be indeterminate (showing an animation). It then defines several functions: get_size, compress, and descomprimido.
+The \texttt{compress} function works as follows:
 
-The get_size function takes an image file as input and returns the width and height of the image. The compress function takes an input image file and an output file location as inputs and compresses the input image. It does this by reading the pixel data of the image, counting the number of consecutive pixels of the same value, and writing this information to the output file along with some metadata about the image.
+\begin{enumerate}
+    \item It opens the input image file and gets the pixel data with the \texttt{getdata} method.
+    \item It iterates through the pixel values and counts the number of consecutive pixels that have the same value.
+    \item It stores this information as a tuple with the count and the pixel value. If the pixel value changes, it stores the information for the previous pixel value and starts counting the new pixel value.
+    \item It opens the compressed file and writes the width and height of the image, as well as some metadata, to the file.
+    \item It writes the list of tuples to the compressed file.
+\end{enumerate}
 
-The descomprimido function appears to be the reverse of the compress function, taking a compressed file as input and generating an uncompressed image file as output. It reads the data from the input file, interprets it to recreate the original pixel data, and writes this data to the output file along with some metadata.
+The \texttt{descomprimido} function takes as input a compressed file and produces a decompressed image file as output. It works as follows:
 
-Finally, the generate_output method calls the compress and descomprimido functions on the input image files and the output file location specified by the user, and sets the progress bar to be complete.
+\begin{enumerate}
+    \item It reads the compressed file and extracts the pixel count information from it.
+    \item It writes the pixel values to an output file, alternating between 0s and 1s depending on the count information.
+    \item It also writes some metadata to the output file, including the image width and height, which are obtained from the \texttt{get\_size} function.
+\end{enumerate}
+
+Overall, this code implements a simple form of image compression and decompression by replacing runs of identical pixels with a count of the number of pixels and the pixel value. It writes the compressed information to a text file, and reads and processes this file to produce the decompressed image.

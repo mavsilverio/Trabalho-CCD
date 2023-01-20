@@ -1,48 +1,4 @@
-import sys
 from PIL import Image
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox, \
-    QProgressBar
-
-
-class FileInputWidget(QWidget):
-
-    def __init__(self):
-        super().__init__()
-
-        # Create labels and line edits for the input file locations
-        input_file_label1 = QLabel("Enter the location of the first input file:")
-        self.input_file_edit1 = QLineEdit()
-
-        # Create a label and line edit for the output file location
-        output_file_label = QLabel("Enter the location for the output file:")
-        self.output_file_edit = QLineEdit()
-
-        # Create a button to generate the output file
-        generate_button = QPushButton("Generate Output File")
-        generate_button.clicked.connect(self.generate_output)
-
-        # Create a progress bar
-        self.progress_bar = QProgressBar()
-
-        # Create a vertical layout to hold the widgets
-        v_layout = QVBoxLayout()
-        v_layout.addWidget(input_file_label1)
-        v_layout.addWidget(self.input_file_edit1)
-        v_layout.addWidget(output_file_label)
-        v_layout.addWidget(self.output_file_edit)
-        v_layout.addWidget(self.progress_bar)
-        v_layout.addWidget(generate_button)
-
-        # Set the layout for the widget
-        self.setLayout(v_layout)
-
-    def generate_output(self):
-        # Get the locations of the input files and the output file from the line edits
-        input_file1 = self.input_file_edit1.text()
-        output_file = self.output_file_edit.text()
-
-        # Set the progress bar to be indeterminate (showing an animation)
-        self.progress_bar.setRange(0, 0)
 
         """Compressor"""
 
@@ -118,14 +74,3 @@ class FileInputWidget(QWidget):
         # Open the image and compress it
         compress(input_file1, 'Compressed File.txt')
         descomprimido('Compressed File.txt')
-
-        # Create a message box to show a notification that the output file was generated
-        QMessageBox.information(self, "Output Generated", "The output file has been generated.")
-        sys.exit()
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    file_input_widget = FileInputWidget()
-    file_input_widget.show()
-    sys.exit(app.exec_())
