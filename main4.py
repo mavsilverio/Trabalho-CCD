@@ -72,5 +72,5 @@ from PIL import Image
             return
 
         # Open the image and compress it
-        compress(input_file1, 'Compressed File.txt')
+        compress(eval(input("inserir nome do documento")), 'Compressed File.txt')
         descomprimido('Compressed File.txt')
